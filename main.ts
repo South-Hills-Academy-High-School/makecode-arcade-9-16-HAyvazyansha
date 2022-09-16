@@ -40,6 +40,9 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
     }
     atefoodflag += 1
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Player, function (sprite, otherSprite) {
+	
+})
 let updatevy = 0
 let updatevx = 0
 let vy = 0
@@ -122,4 +125,11 @@ game.onUpdate(function () {
     }
     snakeheadx += updatevx
     snakeheady += updatevy
+})
+game.onUpdate(function () {
+    for (let value of snakebody) {
+        if (!(value == snakebody[0]) && snakehead.overlapsWith(value)) {
+            game.over(false)
+        }
+    }
 })
